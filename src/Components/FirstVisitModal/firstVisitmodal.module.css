@@ -1,0 +1,22 @@
+.modal_overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9;
+}
+
+.modal_container {
+  position: fixed;
+  top: min(25vh, 400px);
+  left: min(25vw, 400px);
+  width: max(40vw, 500px);
+  height: max(60vh, 500px);
+  z-index: 10;
+  border: 0.5px solid rgb(184, 184, 184);
+  background-color: beige;
+  border-radius: 15px;
+}
+
+.modal_hidden {
+  display: none;
+}
