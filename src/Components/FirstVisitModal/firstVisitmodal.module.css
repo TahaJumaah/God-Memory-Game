@@ -1,22 +1,76 @@
 .modal_overlay {
   position: fixed;
+  display: flex;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-  z-index: 9;
+  z-index: 11;
 }
 
 .modal_container {
   position: fixed;
-  top: min(25vh, 400px);
-  left: min(25vw, 400px);
+  margin-top: auto;
+  margin-left: auto;
+  /* top: min(25vh, 400px); */
+  /* left: min(25vw, 400px); */
   width: max(40vw, 500px);
   height: max(60vh, 500px);
   z-index: 10;
   border: 0.5px solid rgb(184, 184, 184);
-  background-color: beige;
+  background-color: rgb(255, 255, 135);
   border-radius: 15px;
 }
 
 .modal_hidden {
   display: none;
+}
+
+.game_info > h2 {
+  font-size: 3rem;
+}
+
+.game_info {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  font-weight: 900;
+}
+
+form {
+  display: flex;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+  flex-direction: column;
+
+  justify-content: space-around;
+  gap: 2rem;
+}
+form input {
+  border-radius: 15px;
+  border-color: transparent;
+  min-width: 4rem;
+  height: min(45px, 3rem);
+}
+
+form button {
+  border-radius: 15px;
+  border-color: transparent;
+  min-width: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+form button:hover {
+  border: 1px solid black;
+}
+
+@media (width < 600px) {
+  .modal_container {
+    z-index: 10;
+    width: 100%;
+    margin-top: 10%;
+    margin-bottom: auto;
+  }
 }
