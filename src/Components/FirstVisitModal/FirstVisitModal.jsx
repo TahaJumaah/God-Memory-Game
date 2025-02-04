@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import styles from './firstVisitModal.module.css';
-import { updateSessionInfo } from '../../App';
+import styles from './firstvisitmodal.module.css';
 
 export default function firstVisitModal({ sessionInfo, setSessionInfo }) {
   const [isModalShown, setIsModalShown] = useState(sessionInfo.isFirstVisit);
