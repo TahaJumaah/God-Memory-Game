@@ -28,7 +28,7 @@ jobs:
           source: ./
           destination: ./_site
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1  # Update to the latest version
+        uses: actions/upload-pages-artifact@v4  # Update to the latest version
 
   deploy:
     environment:
