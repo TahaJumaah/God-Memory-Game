@@ -22,16 +22,11 @@ export function updateSessionInfo({
   }
 }
 export default function App() {
-  useEffect(() => {
-    if (sessionStorage.getItem('isFirstVisit') === 'false') {
-      sessionStorage.setItem('isFirstVisit', 0);
-    }
-  }, []);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
   const [sessionInfo, setSessionInfo] = useState({
-    playerName: sessionStorage.getItem('playerName'),
+    playerName: sessionStorage.getItem('playerName') || 'Player',
     score: sessionStorage.getItem('playerName'),
     highScore: sessionStorage.getItem('highScore'),
     isFirstVisit: !sessionStorage.getItem('isFirstVisit'),
@@ -54,6 +49,7 @@ export default function App() {
         currentScore={score}
         currentHighScore={highScore}
         changeHighScore={setHighScore}
+        sessionInfo={sessionInfo}
       />
 
       <GodCard

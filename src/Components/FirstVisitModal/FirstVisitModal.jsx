@@ -7,8 +7,8 @@ export default function firstVisitModal({ sessionInfo, setSessionInfo }) {
 
   function handleGameStart(event) {
     event.preventDefault();
-    console.log(event.target[0].value);
     setSessionInfo({ ...sessionInfo, isFirstVisit: 0, playerName: playerName });
+    setIsModalShown(false);
   }
   return (
     <div className={isModalShown ? styles.modal_overlay : styles.modal_hidden}>
@@ -28,7 +28,7 @@ export default function firstVisitModal({ sessionInfo, setSessionInfo }) {
             name="text"
             placeholder="Enter your name or alias"
             onChange={(event) => {
-              setPlayerName(event.target.value);
+              setPlayerName(event.target.value || 'Player');
             }}
           />
           <button type="submit" className={styles.play_button}>

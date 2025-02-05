@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Header({
   changeScore,
   currentScore,
   currentHighScore,
   changeHighScore,
+  sessionInfo,
 }) {
   return (
     <div className="header">
