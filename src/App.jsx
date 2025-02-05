@@ -1,7 +1,7 @@
 import GodCard from './GodCard';
 import StandardCard from './StandardCard';
 import { useEffect, useState } from 'react';
-import Header from './Header';
+import Header from './Components/Header/Header';
 import FirstVisitModal from './Components/FirstVisitModal/FirstVisitModal';
 
 export function updateSessionInfo({
@@ -24,7 +24,7 @@ export function updateSessionInfo({
 export default function App() {
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-
+  console.log(sessionStorage);
   const [sessionInfo, setSessionInfo] = useState({
     playerName: sessionStorage.getItem('playerName') || 'Player',
     score: sessionStorage.getItem('playerName'),
@@ -33,9 +33,11 @@ export default function App() {
   });
 
   useEffect(() => {
-    updateSessionInfo(sessionInfo);
-    console.log(sessionStorage);
-  }, [sessionInfo]);
+    const prevHighScore = sessionStorage.getItem('highScore');
+    if (highScore > prevHighScore) {
+      sessionStorage.setItem('highScore', highScore);
+    }
+  }, [highScore]);
 
   return (
     <>

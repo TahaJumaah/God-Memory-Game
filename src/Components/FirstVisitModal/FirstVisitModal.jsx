@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './modal.module.css';
+import { updateSessionInfo } from '../../App';
 
 export default function firstVisitModal({ sessionInfo, setSessionInfo }) {
   const [isModalShown, setIsModalShown] = useState(sessionInfo.isFirstVisit);
@@ -7,7 +8,13 @@ export default function firstVisitModal({ sessionInfo, setSessionInfo }) {
 
   function handleGameStart(event) {
     event.preventDefault();
-    setSessionInfo({ ...sessionInfo, isFirstVisit: 0, playerName: playerName });
+    setSessionInfo({
+      ...sessionInfo,
+      isFirstVisit: false,
+      playerName: playerName,
+    });
+    sessionStorage.setItem('isFirstVisit', 0);
+    sessionStorage.setItem('playerName', playerName);
     setIsModalShown(false);
   }
   return (
