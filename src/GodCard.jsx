@@ -1,7 +1,7 @@
-import Godlist from "./Godlist";
-import { useState } from "react";
-import StandardCard from "./StandardCard";
-import shuffle from "./Shuffle";
+import Godlist from './Godlist';
+import { useState } from 'react';
+import StandardCard from './StandardCard';
+import shuffle from './Shuffle';
 
 export default function GodCard({
   changeScore,
@@ -20,7 +20,7 @@ export default function GodCard({
         currentScore={currentScore}
         currentHighScore={currentHighScore}
         changeHighScore={changeHighScore}
-      ></StandardCard>
+      />
     );
   });
 

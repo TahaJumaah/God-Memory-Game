@@ -12,7 +12,7 @@ export default function Header({
         Your Score <br />
         {currentScore}
       </p>
-      <p className={styles.player_name}>{playerName}</p>
+      <p className={styles.player_name}>{playerName || 'Player'}</p>
       <p className={styles.high_score}>
         High Score <br /> {currentHighScore}
       </p>

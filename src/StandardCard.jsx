@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Godlist from "./Godlist";
-import shuffle from "./Shuffle";
+import { useState } from 'react';
+import Godlist from './Godlist';
+import shuffle from './Shuffle';
 
 function StandardCard({
   name,
@@ -35,8 +35,6 @@ function StandardCard({
           <em>{name}</em>
         </p>
         <p>{title}</p>
-        {/* <p>{wasClicked}</p> */}
-        {/* <p>{score}</p> */}
       </div>
     </>
   );
