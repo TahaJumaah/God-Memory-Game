@@ -1,8 +1,7 @@
-import Godlist, { type God } from './Godlist';
-import { shuffleArray } from './lib/Functions.ts';
+import { type God } from './Godlist';
 import { usePlayer } from './lib/Store.ts';
 
-export default function GodCard() {
+export default function GodCard({ Gods }: { Gods: God[] }) {
   const playerInfo = usePlayer();
 
   const handleClick = (god: God) => {
@@ -13,8 +12,6 @@ export default function GodCard() {
       playerInfo.update({ ...playerInfo, score: 0, isClicked: [] });
     }
   };
-
-  const Gods = shuffleArray(Godlist);
 
   const GodlistItems = Gods.map((god) => {
     return (
