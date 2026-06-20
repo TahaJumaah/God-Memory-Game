@@ -1,25 +1,33 @@
 import { useState } from 'react';
+import { updateSession } from '../../lib/Functions';
+import { usePlayer } from '../../lib/Store';
 import styles from './modal.module.css';
-import { updateSessionInfo } from '../../App';
 
-export default function firstVisitModal({ sessionInfo, setSessionInfo }) {
-  const [isModalShown, setIsModalShown] = useState(sessionInfo.isFirstVisit);
-  const [playerName, setPlayerName] = useState(null);
+export default function FirstVisitModal() {
+  const playerInfo = usePlayer();
 
-  function handleGameStart(event) {
+  const [isModalShown, setIsModalShown] = useState(playerInfo.isFirstVisit);
+
+  function handleGameStart(event: SubmitEvent) {
     event.preventDefault();
-    setSessionInfo({
-      ...sessionInfo,
+
+    playerInfo.update({
+      ...playerInfo,
       isFirstVisit: false,
-      playerName: playerName,
     });
-    sessionStorage.setItem('isFirstVisit', 0);
-    sessionStorage.setItem('playerName', playerName);
+
+    updateSession({
+      playerName: playerInfo.playerName,
+      highScore: 0,
+      isFirstVisit: false,
+    });
+
     setIsModalShown(false);
   }
+
   return (
     <div className={isModalShown ? styles.modal_overlay : styles.modal_hidden}>
-      <div className={isModalShown ? styles.modal_container : null}>
+      <div className={isModalShown ? styles.modal_container : undefined}>
         <div className={styles.game_info}>
           <h2>How to play</h2>
           <ul>
@@ -32,11 +40,14 @@ export default function firstVisitModal({ sessionInfo, setSessionInfo }) {
         <form onSubmit={handleGameStart}>
           <input
             type="text"
-            name="text"
+            name="playerName"
+            id="playerName"
             placeholder="Enter your name or alias"
-            onChange={(event) => {
-              setPlayerName(event.target.value || 'Player');
-            }}
+            maxLength={15}
+            value={playerInfo.playerName}
+            onChange={(e) =>
+              playerInfo.update({ ...playerInfo, playerName: e.target.value })
+            }
           />
           <button type="submit" className={styles.play_button}>
             Start Playing
