@@ -63,7 +63,12 @@ form button {
 }
 
 form button:hover {
-  border: 1px solid black;
+  transition-property: scale;
+  border: 1px solid greenyellow;
+  background: linear-gradient(red, yellow, green, rgb(242, 0, 255));
+  transition: ease-in-out;
+  transition-duration: 100ms;
+  scale: 1.2;
 }
 
 @media (width < 600px) {

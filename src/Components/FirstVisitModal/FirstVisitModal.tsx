@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import { useRef, useState } from 'react';
 import { updateSession } from '../../lib/Functions';
 import { usePlayer } from '../../lib/Store';
@@ -30,7 +31,16 @@ export default function FirstVisitModal() {
   }
 
   return (
-    <div className={isModalShown ? styles.modal_overlay : styles.modal_hidden}>
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+        translateY: '10%',
+      }}
+      className={isModalShown ? styles.modal_overlay : styles.modal_hidden}
+    >
       <div className={isModalShown ? styles.modal_container : undefined}>
         <div className={styles.game_info}>
           <h2>How to play</h2>
@@ -55,6 +65,6 @@ export default function FirstVisitModal() {
           </button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }

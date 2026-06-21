@@ -1,17 +1,19 @@
 import { type God } from './Godlist';
 import { usePlayer } from './lib/Store.ts';
 
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
 
 export default function GodCard({ Gods }: { Gods: God[] }) {
   const playerInfo = usePlayer();
 
+  const { update, incrementScore, addIdToClicked, score } = playerInfo;
+
   const handleClick = (god: God) => {
     if (playerInfo.isClicked.includes(god.id) === false) {
-      playerInfo.incrementScore();
-      playerInfo.addIdToClicked(god.id);
+      incrementScore();
+      addIdToClicked(god.id);
     } else {
-      playerInfo.update({ ...playerInfo, score: 0, isClicked: [] });
+      update({ ...playerInfo, score: 0, isClicked: [] });
     }
   };
 
@@ -36,16 +38,14 @@ export default function GodCard({ Gods }: { Gods: God[] }) {
   });
 
   return (
-    <AnimatePresence>
-      <motion.div
-        key={playerInfo.score}
-        className="god-container"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        {GodlistItems}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={score}
+      className="god-container"
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1, rotateY: 360 }}
+      transition={{ duration: 0.6 }}
+    >
+      {GodlistItems}
+    </motion.div>
   );
 }

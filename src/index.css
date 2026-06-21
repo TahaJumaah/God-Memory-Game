@@ -15,7 +15,6 @@ body {
 .standard-card {
   display: flex;
   flex-direction: column;
-  /* height: 15%; */
   min-height: 350px;
   width: 25%;
   min-width: 200px;
