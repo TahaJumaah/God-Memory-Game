@@ -6,10 +6,12 @@ export default function Header() {
 
   return (
     <div className={styles.header}>
-      <p className="score">
-        Your Score <br />
-        {playerInfo.score}
-      </p>
+      <div className="score">
+        <p>
+          Your Score <br />
+          {playerInfo.score}
+        </p>
+      </div>
       <p className={styles.player_name}>{playerInfo.playerName}</p>
       <p className={styles.high_score}>
         High Score <br /> {playerInfo.highScore}

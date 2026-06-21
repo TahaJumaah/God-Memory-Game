@@ -10,15 +10,16 @@ export default function App() {
   const [gods, setGods] = useState(Godlist);
 
   const playerInfo = usePlayer();
+  const { score, highScore, update } = playerInfo;
 
   useEffect(() => {
-    if (playerInfo.score > playerInfo.highScore) {
-      playerInfo.update({ ...playerInfo, highScore: playerInfo.score });
-      updateSession({ ...getSession(), highScore: playerInfo.highScore + 1 });
+    if (score > highScore) {
+      update({ ...playerInfo, highScore: score });
+      updateSession({ ...getSession(), highScore: highScore + 1 });
     }
 
     setGods(shuffleArray(gods));
-  }, [playerInfo.score]);
+  }, [score]);
 
   return (
     <>

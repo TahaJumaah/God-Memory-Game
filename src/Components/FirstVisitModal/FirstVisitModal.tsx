@@ -1,23 +1,27 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { updateSession } from '../../lib/Functions';
 import { usePlayer } from '../../lib/Store';
 import styles from './modal.module.css';
 
 export default function FirstVisitModal() {
+  const playerName = useRef<HTMLInputElement | null>(null);
   const playerInfo = usePlayer();
 
   const [isModalShown, setIsModalShown] = useState(playerInfo.isFirstVisit);
 
-  function handleGameStart(event: SubmitEvent) {
+  function handleGameStart(event) {
     event.preventDefault();
+
+    const name = playerName.current?.value || 'Player';
 
     playerInfo.update({
       ...playerInfo,
+      playerName: name,
       isFirstVisit: false,
     });
 
     updateSession({
-      playerName: playerInfo.playerName,
+      playerName: name,
       highScore: 0,
       isFirstVisit: false,
     });
@@ -42,12 +46,9 @@ export default function FirstVisitModal() {
             type="text"
             name="playerName"
             id="playerName"
+            ref={playerName}
             placeholder="Enter your name or alias"
             maxLength={15}
-            value={playerInfo.playerName}
-            onChange={(e) =>
-              playerInfo.update({ ...playerInfo, playerName: e.target.value })
-            }
           />
           <button type="submit" className={styles.play_button}>
             Start Playing
