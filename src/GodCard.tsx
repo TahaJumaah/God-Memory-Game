@@ -1,6 +1,8 @@
 import { type God } from './Godlist';
 import { usePlayer } from './lib/Store.ts';
 
+import { AnimatePresence, motion } from 'motion/react';
+
 export default function GodCard({ Gods }: { Gods: God[] }) {
   const playerInfo = usePlayer();
 
@@ -33,5 +35,17 @@ export default function GodCard({ Gods }: { Gods: God[] }) {
     );
   });
 
-  return <div className="god-container">{GodlistItems}</div>;
+  return (
+    <AnimatePresence>
+      <motion.div
+        key={playerInfo.score}
+        className="god-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        {GodlistItems}
+      </motion.div>
+    </AnimatePresence>
+  );
 }
